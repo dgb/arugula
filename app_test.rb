@@ -13,7 +13,7 @@ def app
 end
 
 before do
-  DB[:users].truncate
+  #DB[:users].truncate
 end
 
 describe 'GET /' do
@@ -25,15 +25,15 @@ end
 
 describe 'POST /users' do
   let(:email) { 'derek@example.com' }
-  let(:user) { User.last }
+  let(:user) { User.order(:updated_at).last }
 
   before do
-    post '/users', email: email, attrs: {foo: 'bar'}
+    post '/users', email: email, extra: {foo: 'bar'}
   end
 
   it 'adds a user' do
     user.email.must_equal email
-    user.attrs['foo'].must_equal 'bar'
+    user.extra['foo'].must_equal 'bar'
   end
 
   it 'responds with a 201' do
