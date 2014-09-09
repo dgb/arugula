@@ -44,3 +44,23 @@ describe 'POST /users' do
     last_response.content_type.must_equal 'application/json'
   end
 end
+
+describe 'PUT /users/:id' do
+  let(:user) { User.create(email: email) }
+  let(:email) { 'derek@example.com' }
+  let(:new_email) { 'barnes@example.com' }
+
+  before { put "/users/#{user.id}", email: new_email, extra: {fizz: 'buzz'} }
+
+  it 'updates the user' do
+    user.reload.email.must_equal new_email
+  end
+
+  it 'responds with a 200' do
+    last_response.status.must_equal 200
+  end
+
+  it 'responds with json' do
+    last_response.content_type.must_equal 'application/json'
+  end
+end

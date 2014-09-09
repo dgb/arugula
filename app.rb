@@ -45,3 +45,15 @@ post '/users' do
   status 201
   json user
 end
+
+put '/users/:id' do
+  param :id, String
+  param :email, String
+  param :attrs, Hash, default: {}
+
+  user = User[params[:id]]
+  update_user(user, params)
+
+  status 200
+  json user
+end
