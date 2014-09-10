@@ -37,7 +37,7 @@ end
 
 post '/users' do
   param :email, String
-  param :attrs, Hash, default: {}
+  param :extra, Hash, default: {}
 
   user = User.new
 
@@ -54,7 +54,7 @@ end
 put '/users/:id' do
   param :id, String
   param :email, String
-  param :attrs, Hash, default: {}
+  param :extra, Hash, default: {}
 
   user = User[params[:id]]
   update_user(user, params)
