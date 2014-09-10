@@ -1,5 +1,6 @@
 require 'securerandom'
 
+require 'rack/cors'
 require 'sequel'
 require 'sinatra'
 require 'sinatra/json'
@@ -15,6 +16,14 @@ class User < Sequel::Model
   def before_create
     self.id = SecureRandom.uuid
     super
+  end
+end
+
+use Rack::Cors do
+  allow do
+    origins '*'
+    resource '/users', methods: :post
+    resource '/users/*', methods: :put
   end
 end
 

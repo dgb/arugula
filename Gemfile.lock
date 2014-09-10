@@ -7,6 +7,7 @@ GEM
     puma (2.9.0)
       rack (>= 1.1, < 2.0)
     rack (1.5.2)
+    rack-cors (0.2.9)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.2)
@@ -33,6 +34,7 @@ PLATFORMS
 DEPENDENCIES
   pg
   puma
+  rack-cors
   rack-test
   sequel
   sinatra

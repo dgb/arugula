@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'pg'
 gem 'puma'
+gem 'rack-cors'
 gem 'sequel'
 gem 'sinatra'
 gem 'sinatra-contrib'
