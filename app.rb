@@ -24,7 +24,7 @@ end
 
 helpers do
   def update_user(user, params)
-    user.set_fields(params, [:email, :extra])
+    user.set_fields(params, [:app, :email, :extra])
     # why doesn't default work?
     user.extra ||= {}
     user.save
@@ -40,6 +40,11 @@ post '/users' do
   param :attrs, Hash, default: {}
 
   user = User.new
+
+  user.referer = request.referer
+  user.ip = request.ip
+  user.user_agent = request.user_agent
+
   update_user(user, params)
 
   status 201
