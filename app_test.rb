@@ -63,4 +63,10 @@ describe 'PUT /users/:id' do
   it 'responds with json' do
     last_response.content_type.must_equal 'application/json'
   end
+
+  it 'merges extra attributes' do
+    put "/users/#{user.id}", extra: {foo: 'bar'}
+    user.reload.extra['fizz'].must_equal 'buzz'
+    user.reload.extra['foo'].must_equal 'bar'
+  end
 end

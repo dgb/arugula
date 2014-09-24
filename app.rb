@@ -33,9 +33,11 @@ end
 
 helpers do
   def update_user(user, params)
-    user.set_fields(params, [:app, :email, :extra])
+    user.set_fields(params, [:app, :email])
     # why doesn't default work?
+    extra = params[:extra] || {}
     user.extra ||= {}
+    user.extra = user.extra.merge(extra)
     user.save
   end
 end
