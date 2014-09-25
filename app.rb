@@ -33,7 +33,7 @@ end
 
 helpers do
   def update_user(user, params)
-    user.set_fields(params, [:app, :email])
+    user.set_fields(params, [:app, :email], missing: :skip)
     # why doesn't default work?
     extra = params[:extra] || {}
     user.extra ||= {}

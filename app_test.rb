@@ -68,5 +68,6 @@ describe 'PUT /users/:id' do
     put "/users/#{user.id}", extra: {foo: 'bar'}
     user.reload.extra['fizz'].must_equal 'buzz'
     user.reload.extra['foo'].must_equal 'bar'
+    user.reload.email.must_equal 'barnes@example.com'
   end
 end
